@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap');
+
+body
+{
+    height: 160vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    background-color: #262626;
+}
+
+.divisão {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coracao
+{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(247, 72, 72);
+    transform: rotate(45deg);
+    animation: batidao 1.4s linear infinite;
+}
+.coracao:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(247, 72, 72);
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+.coracao:after
+{
+    content:'' ;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(247, 72, 72);
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+@keyframes batidao
+{
+    0% {transform:  rotate(45deg) scale(1);}
+    25% {transform:  rotate(45deg) scale(1);}
+    30% {transform:  rotate(45deg) scale(1.4);}
+    50% {transform:  rotate(45deg) scale(1.2);}
+    70% {transform:  rotate(45deg) scale(1.4);}
+    100% {transform:  rotate(45deg) scale(1);}
+}
+
+#mensagem-amor {
+    font-size: 32pt;
+    font-family: 'Loved by the King', cursive;
+    color: red;
+    text-align: center;
+    margin: 10% 5%;
+}
+
+.heart {
+    width: 36px;
+}
