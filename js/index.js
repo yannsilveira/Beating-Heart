@@ -6,5 +6,5 @@ function diasDeNamoro() {
   const dataAtual = new Date();
   const dataReferencia = new Date("2022-12-12");
   const diferenca = dataAtual - dataReferencia;
-  return Math.round(diferenca / (1000 * 60 * 60 * 24));
+  return Math.round(diferenca / (1000 * 60 * 60 * 24)) - 1;
 }
