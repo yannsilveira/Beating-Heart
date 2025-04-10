@@ -15,14 +15,14 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60%;
+    margin-top: 180%;
 }
 
 .coracao
 {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 40px;
+    height: 40px;
     background-color: rgb(247, 72, 72);
     transform: rotate(45deg);
     animation: batidao 1.4s linear infinite;
