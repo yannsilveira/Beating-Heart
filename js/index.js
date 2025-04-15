@@ -1,7 +1,6 @@
 const mensagem = document.getElementById('mensagem-amor');
 
-mensagem.innerHTML = `<p>Você não imagina o significado que tem em minha vida. Por um tempo já cheguei a imaginar que o amor não seria para min. Felizmente você me respondeu no Instagram aquele dia. Nunca mais esquecerei aquela mensagem pois foi o ínicio da melhor decisão que tomei.</p>`;
-mensagem.innerHTML += `Meu coração bate forte por você desde o dia 14/03/2025, totalizando ${diasDeNamoro()} dias e contando de muito amor, fidelidade, compaixão e desáfios. Estarei aqui para você sempre minha preta.`;
+mensagem.innerHTML = `<p>Você não imagina o significado que tem em minha vida. Por um tempo já cheguei a imaginar que o amor não seria para min. Felizmente você me respondeu no Instagram aquele dia. Nunca mais esquecerei aquela mensagem pois foi o ínicio da melhor decisão que tomei. Meu coração bate forte por você desde o dia 14/03/2025, totalizando ${diasDeNamoro()} dias e contando de muito amor, fidelidade, compaixão e desáfios. Estarei aqui para você sempre minha preta.</p>`;
 mensagem.innerHTML += `<p>Com muito carinho ASS: Seu amor</p>`;
 
 
