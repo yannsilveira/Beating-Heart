@@ -12,6 +12,14 @@ body
     margin-top: 20%; 
 }
 
+.music {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;   
+}
+
 .coracao
 {
     width: 60px;
@@ -60,3 +68,35 @@ body
     font-family: 'Loved by the King', cursive;
     text-align: center;
 }
+
+.player-container {
+    margin: 4%;
+    border-radius: 40px;
+    background: white;
+    transition: box-shadow 0.3s ease;
+}
+    /* Múltiplas sombras vermelhas de fora para dentro */
+.player-container:hover {
+    box-shadow:
+    0 0 0 30px rgba(255, 0, 0, 0.1),
+    0 0 0 20px rgba(255, 0, 0, 0.2),
+    0 0 0 10px rgba(255, 0, 0, 0.4),
+    0 0 0 5px rgba(255, 0, 0, 0.6);
+}
+
+@media (max-width: 900px) {
+    .music {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+#my-black {
+    font-weight: bold;
+    font-size: 36pt;
+}
+
+#date, #total-days, #keywords {
+    color: red;
+    font-weight: bold;
+} 
