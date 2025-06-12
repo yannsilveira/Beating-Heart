@@ -8,15 +8,28 @@ function diasDeNamoro() {
   const dataAtual = new Date();
   const dataReferencia = new Date("2025-03-14");
 
-  const diferencaMs = dataAtual - dataReferencia;
+  let anoAtual = dataAtual.getFullYear();
+  let mesAtual = dataAtual.getMonth();
+  let diaAtual = dataAtual.getDate();
 
-  const totalDias = Math.floor(diferencaMs / (1000 * 60 * 60 * 24));
+  let anoRef = dataReferencia.getFullYear();
+  let mesRef = dataReferencia.getMonth();
+  let diaRef = dataReferencia.getDate();
 
-  const anos = Math.floor(totalDias / 365);
-  const diasRestantesAno = totalDias % 365;
+  let anos = anoAtual - anoRef;
+  let meses = mesAtual - mesRef;
+  let dias = diaAtual - diaRef;
 
-  const meses = Math.floor(diasRestantesAno / 30);
-  const dias = diasRestantesAno % 30;
+  if (dias < 0) {
+    meses -= 1;
+    const ultimoDiaMesAnterior = new Date(anoAtual, mesAtual, 0).getDate();
+    dias += ultimoDiaMesAnterior;
+  }
+
+  if (meses < 0) {
+    anos -= 1;
+    meses += 12;
+  }
 
   let resultado = '';
 
@@ -34,5 +47,5 @@ function diasDeNamoro() {
     resultado += `${dias} dia${dias > 1 ? 's' : ''}`;
   }
 
-  return resultado
+  return resultado;
 }
