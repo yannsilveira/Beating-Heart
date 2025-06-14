@@ -14,7 +14,9 @@ function diasDeNamoro() {
 
   let anoRef = dataReferencia.getFullYear();
   let mesRef = dataReferencia.getMonth();
-  let diaRef = dataReferencia.getDate();
+  let dataMenosUmDia = new Date(dataReferencia);
+  dataMenosUmDia.setDate(dataMenosUmDia.getDate() + 1);
+  let diaRef = dataMenosUmDia.getDate();
 
   let anos = anoAtual - anoRef;
   let meses = mesAtual - mesRef;
