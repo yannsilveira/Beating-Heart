@@ -1,15 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap');
 
-body
-{
+body {
     font-family: 'Lato', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 1s, color 1s;
+    margin: 5%;
 }
 
+/* ---------------- Tema ---------------- */
+:root {
+    --bg: #fff;
+    --text: #111;
+}
+body.dark {
+    --bg: #111;
+    --text: #eee;
+}
+
+/* ---------------- Layout ---------------- */
 .divisão {
     display: flex;
     flex-direction: column;
-    align-items: center;   
-    margin-top: 20%; 
+    align-items: center;
 }
 
 .music {
@@ -20,16 +33,16 @@ body
     width: 70%;   
 }
 
-.coracao
-{
+/* ---------------- Coração ---------------- */
+.coracao {
     width: 60px;
     height: 60px;
     background-color: rgb(247, 72, 72);
     transform: rotate(45deg);
     animation: batidao 1.4s linear infinite;
+    position: relative;
 }
-.coracao:before
-{
+.coracao:before {
     content: '';
     position: absolute;
     top: 0;
@@ -40,8 +53,7 @@ body
     transform: translateY(-50%);
     border-radius: 50%;
 }
-.coracao:after
-{
+.coracao:after {
     content:'' ;
     position: absolute;
     top: 0;
@@ -53,8 +65,7 @@ body
     border-radius: 50%;
 }
 
-@keyframes batidao
-{
+@keyframes batidao {
     0% {transform:  rotate(45deg) scale(1);}
     25% {transform:  rotate(45deg) scale(1);}
     30% {transform:  rotate(45deg) scale(1.4);}
@@ -69,13 +80,27 @@ body
     text-align: center;
 }
 
+.fade-text {
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); text-shadow: 0 0 0px transparent; }
+    50% { transform: scale(1.2); text-shadow: 0 0 15px crimson; }
+    100% { transform: scale(1); text-shadow: 0 0 0px transparent; }
+}
+
 .player-container {
     margin: 4%;
     border-radius: 40px;
     background: white;
     transition: box-shadow 0.3s ease;
 }
-    /* Múltiplas sombras vermelhas de fora para dentro */
+
 .player-container:hover {
     box-shadow:
     0 0 0 30px rgba(255, 0, 0, 0.1),
@@ -89,7 +114,11 @@ body
       flex-wrap: wrap;
       justify-content: center;
     }
-  }
+
+    .theme-toggle {
+        font-size: 8pt;
+    }
+}
 
 #my-black, #bible {
     font-weight: bold;
@@ -113,4 +142,62 @@ body
 #bible-text {
     font-size: 22pt;
     margin-top: 10%;
+}
+
+.theme-toggle {
+    margin: 4% 0;
+    display: block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: crimson;
+    color: white;
+    font-size: 10pt;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: darkred;
+}
+
+.flower {
+    position: relative;
+    margin: 12%;
+    display: none;
+    animation: fadeIn 2s ease forwards;
+}
+
+.petal {
+    width: 50px;
+    height: 80px;
+    background: pink;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    transform-origin: bottom center;
+}
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
+.petal:nth-child(2) { transform: rotate(60deg) translateY(-20px); }
+.petal:nth-child(3) { transform: rotate(120deg) translateY(-20px); }
+.petal:nth-child(4) { transform: rotate(180deg) translateY(-20px); }
+.petal:nth-child(5) { transform: rotate(240deg) translateY(-20px); }
+.petal:nth-child(6) { transform: rotate(300deg) translateY(-20px); }
+
+.center {
+    width: 48px;
+    height: 49px;
+    background: gold;
+    border-radius: 50%;
+    position: absolute;
+    top: 66px;
+    left: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.flower-div {
+    display: flex;
+    align-items: center;
+    width: 90%;
 }

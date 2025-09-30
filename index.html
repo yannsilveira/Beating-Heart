@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Coração</title>
 </head>
+
 <body>
+    <button class="theme-toggle" id="theme-btn">Alternar Tema</button>
     <div class="divisão">
         <div class="coracao"></div>
         <div class="paragrafo-amor">
-            <p id="mensagem-amor"></p>
+            <p id="mensagem-amor" class="fade-text">O Amor Tudo Suporta</p>
         </div>
         <div class="music">
             <div>
@@ -20,26 +23,52 @@
                 <audio id="musica" controls>
                     <source src="/Beating-Heart/music/pretaHungria.mp3" type="audio/mpeg">
                     Seu navegador não suporta áudio HTML5.
-                  </audio>
+                </audio>
             </div>
         </div>
         <p id="mensagem-amor">E claro!!! 😁</p>
         <div class="music">
             <div>
-                <p id="mensagem-amor" class="music-text">Não poderia faltar a <span id="keywords">nossa música</span></p>
+                <p id="mensagem-amor" class="music-text">Não poderia faltar a <span id="keywords">nossa música</span>
+                </p>
             </div>
             <div class="player-container">
                 <audio id="musica" controls>
                     <source src="/Beating-Heart/music/vitaminac.mp3" type="audio/mpeg">
                     Seu navegador não suporta áudio HTML5.
-                  </audio>
+                </audio>
             </div>
         </div>
-        <div class="bible-div">
+        <div class="bible-div fade-text">
             <p><span id="bible">1 Coríntios 13:7 📖</span></p>
             <p id="bible-text">"O amor tudo sofre, tudo crê, tudo espera, tudo suporta"</p>
+        </div>
+
+        <div class="flower-div">
+            <div class="flower" id="flower">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="center"></div>
+            </div>
+            <div>
+                <p id="mensagem-amor">No silêncio das palavras não ditas,
+                    teu olhar me escreve poesias.
+                    Cada gesto teu é promessa,
+                    cada toque, um eterno começo.
+
+                    O tempo se curva quando sorris,
+                    e tudo em mim encontra abrigo.
+                    Se o amor é chama, és meu fogo,
+                    se a vida é estrada, és meu destino.</p>
+            </div>
+            
         </div>
     </div>
     <script src="./js/index.js"></script>
 </body>
+
 </html>
