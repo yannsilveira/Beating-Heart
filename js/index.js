@@ -70,3 +70,124 @@ if (flowers.length > 0) {
     }, 2000 * (index + 1));
   });
 }
+
+const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const box = 20;
+    let snake, direction, food, score, game;
+
+    const message = document.getElementById("message");
+    const restartBtn = document.getElementById("restart");
+    const scoreDisplay = document.getElementById("score");
+
+    function initGame() {
+      snake = [{ x: 9 * box, y: 10 * box }];
+      direction = null;
+      score = 0;
+      food = {
+        x: Math.floor(Math.random() * (canvas.width / box)) * box,
+        y: Math.floor(Math.random() * (canvas.height / box)) * box,
+      };
+      message.style.display = "none";
+      restartBtn.style.display = "none";
+      scoreDisplay.innerText = "Corações: 0";
+
+      if (game) clearInterval(game);
+      game = setInterval(draw, 100);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+      else if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+      else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+      else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+    });
+
+    document.getElementById("up").addEventListener("click", () => {
+      if (direction !== "DOWN") direction = "UP";
+    });
+    document.getElementById("down").addEventListener("click", () => {
+      if (direction !== "UP") direction = "DOWN";
+    });
+    document.getElementById("left").addEventListener("click", () => {
+      if (direction !== "RIGHT") direction = "LEFT";
+    });
+    document.getElementById("right").addEventListener("click", () => {
+      if (direction !== "LEFT") direction = "RIGHT";
+    });
+
+    function draw() {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // desenhar cobrinha
+      for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = i === 0 ? "lime" : "green";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+      }
+
+      // desenhar coração
+      ctx.font = "20px Arial";
+      ctx.fillText("❤️", food.x + 2, food.y + 18);
+
+      let snakeX = snake[0].x;
+      let snakeY = snake[0].y;
+
+      if (direction === "LEFT") snakeX -= box;
+      if (direction === "UP") snakeY -= box;
+      if (direction === "RIGHT") snakeX += box;
+      if (direction === "DOWN") snakeY += box;
+
+      // se comer o coração
+      if (snakeX === food.x && snakeY === food.y) {
+        score++;
+        scoreDisplay.innerText = "Corações: " + score;
+
+        if (score >= 14) {
+          clearInterval(game);
+          message.innerText = "🎉 Você coletou os 14 corações! Com isso, completou o nosso amor! ❤️🐍";
+          message.style.display = "block";
+          restartBtn.style.display = "inline-block";
+          return;
+        }
+
+        food = {
+          x: Math.floor(Math.random() * (canvas.width / box)) * box,
+          y: Math.floor(Math.random() * (canvas.height / box)) * box,
+        };
+      } else {
+        snake.pop();
+      }
+
+      let newHead = { x: snakeX, y: snakeY };
+
+      // colisão
+      if (
+        snakeX < 0 ||
+        snakeY < 0 ||
+        snakeX >= canvas.width ||
+        snakeY >= canvas.height ||
+        collision(newHead, snake)
+      ) {
+        clearInterval(game);
+        message.innerText = "☠️ Nosso relacionamento falhou! Clique em Recomeçar.";
+        message.style.display = "block";
+        restartBtn.style.display = "inline-block";
+        return;
+      }
+
+      snake.unshift(newHead);
+    }
+
+    function collision(head, array) {
+      for (let i = 0; i < array.length; i++) {
+        if (head.x === array[i].x && head.y === array[i].y) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    restartBtn.addEventListener("click", initGame);
+
+    initGame();

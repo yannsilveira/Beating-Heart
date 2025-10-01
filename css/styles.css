@@ -12,6 +12,7 @@ body {
     --bg: #fff;
     --text: #111;
 }
+
 body.dark {
     --bg: #111;
     --text: #eee;
@@ -28,7 +29,7 @@ body.dark {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 70%;   
+    width: 70%;
 }
 
 .coracao {
@@ -39,6 +40,7 @@ body.dark {
     animation: batidao 1.4s linear infinite;
     position: relative;
 }
+
 .coracao:before {
     content: '';
     position: absolute;
@@ -50,8 +52,9 @@ body.dark {
     transform: translateY(-50%);
     border-radius: 50%;
 }
+
 .coracao:after {
-    content:'' ;
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -63,12 +66,29 @@ body.dark {
 }
 
 @keyframes batidao {
-    0% {transform:  rotate(45deg) scale(1);}
-    25% {transform:  rotate(45deg) scale(1);}
-    30% {transform:  rotate(45deg) scale(1.4);}
-    50% {transform:  rotate(45deg) scale(1.2);}
-    70% {transform:  rotate(45deg) scale(1.4);}
-    100% {transform:  rotate(45deg) scale(1);}
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    30% {
+        transform: rotate(45deg) scale(1.4);
+    }
+
+    50% {
+        transform: rotate(45deg) scale(1.2);
+    }
+
+    70% {
+        transform: rotate(45deg) scale(1.4);
+    }
+
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
 }
 
 #mensagem-amor {
@@ -81,14 +101,28 @@ body.dark {
     opacity: 0;
     animation: fadeIn 3s ease forwards;
 }
+
 @keyframes fadeIn {
-    to { opacity: 0.7; }
+    to {
+        opacity: 0.7;
+    }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); text-shadow: 0 0 0px transparent; }
-    50% { transform: scale(1.2); text-shadow: 0 0 15px crimson; }
-    100% { transform: scale(1); text-shadow: 0 0 0px transparent; }
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 0px transparent;
+    }
+
+    50% {
+        transform: scale(1.2);
+        text-shadow: 0 0 15px crimson;
+    }
+
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 0px transparent;
+    }
 }
 
 .player-container {
@@ -100,16 +134,16 @@ body.dark {
 
 .player-container:hover {
     box-shadow:
-    0 0 0 30px rgba(255, 0, 0, 0.1),
-    0 0 0 20px rgba(255, 0, 0, 0.2),
-    0 0 0 10px rgba(255, 0, 0, 0.4),
-    0 0 0 5px rgba(255, 0, 0, 0.6);
+        0 0 0 30px rgba(255, 0, 0, 0.1),
+        0 0 0 20px rgba(255, 0, 0, 0.2),
+        0 0 0 10px rgba(255, 0, 0, 0.4),
+        0 0 0 5px rgba(255, 0, 0, 0.6);
 }
 
 @media (max-width: 900px) {
     .music {
-      flex-wrap: wrap;
-      justify-content: center;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .theme-toggle {
@@ -117,12 +151,15 @@ body.dark {
     }
 }
 
-#my-black, #bible {
+#my-black,
+#bible {
     font-weight: bold;
     font-size: 42pt;
 }
 
-#date, #total-days, #keywords {
+#date,
+#total-days,
+#keywords {
     color: red;
     font-weight: bold;
 }
@@ -176,12 +213,30 @@ body.dark {
     left: 25px;
     transform-origin: bottom center;
 }
-.petal:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
-.petal:nth-child(2) { transform: rotate(60deg) translateY(-20px); }
-.petal:nth-child(3) { transform: rotate(120deg) translateY(-20px); }
-.petal:nth-child(4) { transform: rotate(180deg) translateY(-20px); }
-.petal:nth-child(5) { transform: rotate(240deg) translateY(-20px); }
-.petal:nth-child(6) { transform: rotate(300deg) translateY(-20px); }
+
+.petal:nth-child(1) {
+    transform: rotate(0deg) translateY(-20px);
+}
+
+.petal:nth-child(2) {
+    transform: rotate(60deg) translateY(-20px);
+}
+
+.petal:nth-child(3) {
+    transform: rotate(120deg) translateY(-20px);
+}
+
+.petal:nth-child(4) {
+    transform: rotate(180deg) translateY(-20px);
+}
+
+.petal:nth-child(5) {
+    transform: rotate(240deg) translateY(-20px);
+}
+
+.petal:nth-child(6) {
+    transform: rotate(300deg) translateY(-20px);
+}
 
 .center {
     width: 48px;
@@ -198,4 +253,101 @@ body.dark {
     display: flex;
     align-items: center;
     width: 90%;
+}
+
+.cobrinha-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+canvas {
+    border: 2px solid #fff;
+    background: #333;
+}
+
+#score {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#restart {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background: crimson;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+}
+
+#restart:hover {
+    background: darkred;
+}
+
+.game-text-paragraph {
+    margin-bottom: 3%;
+}
+
+.controls {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 80px 80px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background: #444;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn:active {
+    background: #666;
+}
+
+/* Layout das setas */
+#up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#down {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#right {
+    grid-column: 3;
+    grid-row: 2;
 }
