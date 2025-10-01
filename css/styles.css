@@ -253,6 +253,7 @@ body.dark {
     display: flex;
     align-items: center;
     width: 90%;
+    margin-bottom: 10%;
 }
 
 .cobrinha-game {
@@ -262,7 +263,6 @@ body.dark {
     justify-content: center;
     height: 100vh;
     font-family: Arial, sans-serif;
-    margin-top: 30%;
 }
 
 canvas {
