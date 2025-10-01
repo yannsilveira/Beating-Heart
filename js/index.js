@@ -146,6 +146,7 @@ const canvas = document.getElementById("game");
         if (score >= 14) {
           clearInterval(game);
           message.innerText = "🎉 Você coletou os 14 corações! Com isso, completou o nosso amor! ❤️🐍";
+          message.id = "mensagem-amor"
           message.style.display = "block";
           restartBtn.style.display = "inline-block";
           return;
@@ -171,6 +172,7 @@ const canvas = document.getElementById("game");
       ) {
         clearInterval(game);
         message.innerText = "☠️ Nosso relacionamento falhou! Clique em Recomeçar.";
+        message.id = "mensagem-amor"
         message.style.display = "block";
         restartBtn.style.display = "inline-block";
         return;
