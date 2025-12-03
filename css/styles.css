@@ -353,3 +353,77 @@ canvas {
     grid-column: 3;
     grid-row: 2;
 }
+
+#btnEmail {
+    background: linear-gradient(135deg, var(--rosa-claro), var(--rosa-escuro));
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    width: 30%;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    background-color: red;
+    box-shadow:
+        0 0 12px var(--glow),
+        0 0 30px rgba(255, 50, 150, 0.3);
+    font-size: 26pt;
+    font-family: 'Loved by the King', cursive;
+    text-align: center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.3s ease;
+}
+
+#btnEmail:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 0 15px var(--glow),
+        0 0 40px rgba(255, 50, 150, 0.45);
+    filter: brightness(1.15);
+}
+
+#btnEmail:active:not(:disabled) {
+    transform: scale(.96);
+}
+
+#btnEmail:disabled {
+    opacity: 0.45;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px var(--glow);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--glow), 0 0 45px rgba(255, 50, 150, .4);
+    }
+
+    100% {
+        box-shadow: 0 0 10px var(--glow);
+    }
+}
+
+#btnEmail:not(:disabled) {
+    animation: pulse 2.6s infinite;
+}
+
+#btnEmail::after {
+    content: "💗 ";
+}
+
+
+#btnEmail:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#datavalidacao {
+    font-size: 20pt;
+    font-family: 'Loved by the King', cursive;
+    text-align: center;
+}

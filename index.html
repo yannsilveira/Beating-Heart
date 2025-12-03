@@ -68,20 +68,34 @@
 
         <div class="cobrinha-game">
             <h1 id="mensagem-amor"">🐍 Cobrinha dos Corações ❤️</h1>
-            <p class="game-text-paragraph" id="mensagem-amor">Colete 14 corações (dia do início do nosso relacionamento) para completar o
+            <p class=" game-text-paragraph" id="mensagem-amor">Colete 14 corações (dia do início do nosso
+                relacionamento) para completar o
                 nosso amor</p>
-            <canvas id="game" width="400" height="400"></canvas>
-            <div id="score">Corações: 0</div>
-            <div id="message"></div>
-            <button id="restart">Recomeçar</button>
+                <canvas id="game" width="400" height="400"></canvas>
+                <div id="score">Corações: 0</div>
+                <div id="message"></div>
+                <button id="restart">Recomeçar</button>
 
-            <div class="controls">
-                <button class="btn" id="up">⬆️</button>
-                <button class="btn" id="left">⬅️</button>
-                <button class="btn" id="down">⬇️</button>
-                <button class="btn" id="right">➡️</button>
-            </div>
+                <div class="controls">
+                    <button class="btn" id="up">⬆️</button>
+                    <button class="btn" id="left">⬅️</button>
+                    <button class="btn" id="down">⬇️</button>
+                    <button class="btn" id="right">➡️</button>
+                </div>
         </div>
+    </div>
+    <div style="margin-top: 10%; display: flex; flex-direction: column; width: 100%;">
+        <div style="display: flex; flex-direction: row;">
+            <button id="btnEmail">
+                Encomendar Carta
+            </button>
+            <span style="margin-left: 4%;" id="status"></span>
+        </div>
+        <ul id="mensagem-amor" style="text-align: left;">
+            <p>Observações:</p>
+            <li>O tempo de entrega da carta pode ser de até 10 dias úteis</li>
+            <li>Uma nova carta pode ser solicitada a cada 2 meses</li>
+        </ul>
     </div>
     <script src="./js/index.js"></script>
 </body>
