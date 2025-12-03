@@ -87,14 +87,27 @@
     <div style="margin-top: 10%; display: flex; flex-direction: column; width: 100%;">
         <div style="display: flex; flex-direction: column;">
             <button id="btnEmail">
-                Encomendar Carta
+                Encomendar Carta 💖
             </button>
             <span style="margin-top: 2%;" id="status"></span>
         </div>
+        <div style="display: flex; flex-direction: column;">
+            <select id="selectChocolate" style="width: 100%;">
+                <option value="">Selecione um chocolate 🍫</option>
+                <option value="Lacta">Lacta</option>
+                <option value="Nestlé">Nestlé</option>
+                <option value="Garoto">Garoto</option>
+                <option value="Hershey's">Hershey's</option>
+                <option value="Cacau Show">Cacau Show</option>
+            </select>
+            <br><br>
+            <button id="btnChocolate">Encomendar chocolate 🍫</button>
+            <div id="statusChocolate"></div>
+        </div>
         <ul id="mensagem-amor" style="text-align: left; margin-top: 0%">
             <p>Observações:</p>
-            <li>O tempo de entrega da carta pode ser de até 10 dias úteis</li>
-            <li>Uma nova carta pode ser solicitada a cada 2 meses</li>
+            <li>O tempo de entrega da carta ou chocolate pode ser de até 10 dias úteis</li>
+            <li>Uma nova carta pode ser solicitada a cada 2 meses e chocolates a cada 3</li>
         </ul>
     </div>
     <script src="./js/index.js"></script>

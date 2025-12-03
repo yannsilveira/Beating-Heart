@@ -355,7 +355,7 @@ canvas {
     grid-row: 2;
 }
 
-#btnEmail {
+#btnEmail, #btnChocolate {
     background: linear-gradient(135deg, var(--rosa-claro), var(--rosa-escuro));
     color: white;
     border: none;
@@ -376,7 +376,7 @@ canvas {
         filter 0.3s ease;
 }
 
-#btnEmail:hover:not(:disabled) {
+#btnEmail:hover:not(:disabled), #btnChocolate:hover:not(:disabled) {
     transform: translateY(-3px) scale(1.03);
     box-shadow:
         0 0 15px var(--glow),
@@ -384,11 +384,11 @@ canvas {
     filter: brightness(1.15);
 }
 
-#btnEmail:active:not(:disabled) {
+#btnEmail:active:not(:disabled), #btnChocolate:active:not(:disabled) {
     transform: scale(.96);
 }
 
-#btnEmail:disabled {
+#btnEmail:disabled, #btnChocolate:disabled {
     opacity: 0.45;
     box-shadow: none;
     cursor: not-allowed;
@@ -408,7 +408,7 @@ canvas {
     }
 }
 
-#btnEmail:not(:disabled) {
+#btnEmail:not(:disabled), #btnChocolate:not(:disabled) {
     animation: pulse 2.6s infinite;
 }
 
@@ -417,7 +417,7 @@ canvas {
 }
 
 
-#btnEmail:disabled {
+#btnEmail:disabled, #btnChocolate:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
@@ -426,4 +426,46 @@ canvas {
     font-size: 20pt;
     font-family: 'Loved by the King', cursive;
     text-align: center;
+}
+
+#selectChocolate {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #fff;
+  border: 2px solid #e91e63;
+  border-radius: 10px;
+  padding: 12px 40px 12px 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: #880e4f;
+
+  width: 260px;
+
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23e91e63'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px;
+
+  transition: all 0.25s ease;
+}
+
+#selectChocolate:hover {
+  border-color: #ad1457;
+}
+
+#selectChocolate:focus {
+  outline: none;
+  border-color: #9c27b0;
+  box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+}
+
+#selectChocolate option {
+  color: #4a0044;
+  background-color: #fff;
+  font-size: 15px;
 }

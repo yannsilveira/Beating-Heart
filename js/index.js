@@ -199,84 +199,140 @@ const EMAIL_DESTINO = "yannsilveira34@gmail.com";
 const DIAS_BLOQUEIO = 60;
 const SEGUNDOS_BLOQUEIO = 6;
 
-const STORAGE_KEY = "ultimoEnvioEmail";
+// ===============================
+// CHAVES DO LOCALSTORAGE
+// ===============================
+const STORAGE_CARTA = "ultimoEnvioCarta";
+const STORAGE_CHOCOLATE = "ultimoEnvioChocolate";
 
-const btn = document.getElementById("btnEmail");
-const status = document.getElementById("status");
+// ===============================
+// ELEMENTOS
+// ===============================
+const btnCarta = document.getElementById("btnEmail");
+const statusCarta = document.getElementById("status");
 
+const btnChocolate = document.getElementById("btnChocolate");
+const statusChocolate = document.getElementById("statusChocolate");
+const selectChocolate = document.getElementById("selectChocolate");
+
+// ===============================
+// TEMPO DE BLOQUEIO
+// ===============================
 function getTempoBloqueio() {
   return DIAS_BLOQUEIO > 0
     ? DIAS_BLOQUEIO * 24 * 60 * 60 * 1000
     : SEGUNDOS_BLOQUEIO * 1000;
 }
 
-function verificarBloqueio() {
-  const ultimo = localStorage.getItem(STORAGE_KEY);
+// ===============================
+// VERIFICA BLOQUEIO POR ITEM
+// ===============================
+function verificarBloqueio(storageKey) {
+  const ultimo = localStorage.getItem(storageKey);
   if (!ultimo) return 0;
 
   const agora = Date.now();
-  const bloqueio = getTempoBloqueio();
-
-  const restante = bloqueio - (agora - parseInt(ultimo));
+  const restante = getTempoBloqueio() - (agora - Number(ultimo));
 
   return restante > 0 ? restante : 0;
 }
 
-function atualizar() {
-  const restante = verificarBloqueio();
+// ===============================
+// ATUALIZA UM BOTÃO E UM STATUS
+// ===============================
+function atualizarBotao(botao, statusEl, storageKey, tituloEmoji) {
+  const restante = verificarBloqueio(storageKey);
 
   if (restante > 0) {
-    btn.disabled = true;
+    botao.disabled = true;
 
     if (DIAS_BLOQUEIO > 0) {
       const liberacao = new Date(Date.now() + restante);
 
-      status.innerHTML = `
-      <span id="datavalidacao">
-        💌 Você já enviou sua mensagem.<br>
-        Disponível novamente em:
-        ${liberacao.toLocaleDateString("pt-BR")}
+      statusEl.innerHTML = `
+        <span id="datavalidacao">
+          ${tituloEmoji} Pedido já enviado.<br>
+          Disponível novamente em:
+          ${liberacao.toLocaleDateString("pt-BR")}
+        </span>
+      `;
+    } else {
+      const segundos = Math.ceil(restante / 1000);
+
+      statusEl.innerHTML = `
+        <span id="datavalidacao">
+          ${tituloEmoji} Pedido já enviado.<br>
+          Aguarde ${segundos} segundo${segundos > 1 ? "s" : ""}...
         </span>
       `;
     }
 
-    else {
-      const segundos = Math.ceil(restante / 1000);
-
-      status.innerHTML = `
-      <span id="datavalidacao">
-        💌 Você já enviou sua mensagem.<br>
-        Aguarde ${segundos} segundo${segundos > 1 ? "s" : ""}...
-        </span>`;
-    }
-
   } else {
-    btn.disabled = false;
-    status.textContent = "";
+    botao.disabled = false;
+    statusEl.textContent = "";
   }
 }
 
-setInterval(atualizar, 1000);
+// ===============================
+// ATUALIZA TODOS
+// ===============================
+function atualizarTudo() {
+  atualizarBotao(btnCarta, statusCarta, STORAGE_CARTA, "💌");
+  atualizarBotao(btnChocolate, statusChocolate, STORAGE_CHOCOLATE, "🍫");
+}
 
-btn.addEventListener("click", () => {
+setInterval(atualizarTudo, 1000);
+atualizarTudo();
+
+// ===============================
+// EMAIL — CARTA
+// ===============================
+btnCarta.addEventListener("click", () => {
   const assunto = "Solicitando uma carta de amor 💖";
-
   const corpo = `
 Oi amor,
 
 Gostaria muito de ganhar uma cartinha nova. Por isso estou te solicitando.
 
-Com amor 💗, sua pretinha.
+Com amor 💗,
+sua pretinha.
 `;
 
-  window.location.href = `
-mailto:${EMAIL_DESTINO}
-?subject=${encodeURIComponent(assunto)}
-&body=${encodeURIComponent(corpo)}
-`.replace(/\s/g, "");
+  window.location.href = `mailto:${EMAIL_DESTINO}?subject=${encodeURIComponent(
+    assunto
+  )}&body=${encodeURIComponent(corpo)}`;
 
-  localStorage.setItem(STORAGE_KEY, Date.now());
-  atualizar();
+  localStorage.setItem(STORAGE_CARTA, Date.now());
+  atualizarTudo();
 });
 
-atualizar();
+// ===============================
+// EMAIL — CHOCOLATE
+// ===============================
+btnChocolate.addEventListener("click", () => {
+  const chocolate = selectChocolate.value;
+
+  if (!chocolate) {
+    alert("Selecione uma marca de chocolate primeiro 🍫");
+    return;
+  }
+
+  const assunto = "Pedido de chocolate 🍫";
+  const corpo = `
+Oi amor,
+
+Hoje estou desejando um chocolate da marca:
+
+➡ ${chocolate}
+
+Com carinho 💖,
+sua pretinha.
+`;
+
+  window.location.href = `mailto:${EMAIL_DESTINO}?subject=${encodeURIComponent(
+    assunto
+  )}&body=${encodeURIComponent(corpo)}`;
+
+  localStorage.setItem(STORAGE_CHOCOLATE, Date.now());
+  atualizarTudo();
+});
