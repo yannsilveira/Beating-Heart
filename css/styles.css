@@ -264,6 +264,7 @@ body.dark {
     height: 100vh;
     font-family: Arial, sans-serif;
     padding-top: 20%;
+    margin-bottom: 50%;
 }
 
 canvas {
@@ -359,7 +360,6 @@ canvas {
     color: white;
     border: none;
     padding: 10px 14px;
-    width: 30%;
     letter-spacing: 1px;
     border-radius: 20px;
     background-color: red;
