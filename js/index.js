@@ -196,18 +196,15 @@ initGame();
 
 const EMAIL_DESTINO = "yannsilveira34@gmail.com";
 
-const DIAS_BLOQUEIO = 60;
-const SEGUNDOS_BLOQUEIO = 6;
+const DIAS_BLOQUEIO_CARTA = 60;
+const SEGUNDOS_BLOQUEIO_CARTA = 6;
 
-// ===============================
-// CHAVES DO LOCALSTORAGE
-// ===============================
+const DIAS_BLOQUEIO_CHOCOLATE = 90;
+const SEGUNDOS_BLOQUEIO_CHOCOLATE = 6;
+
 const STORAGE_CARTA = "ultimoEnvioCarta";
 const STORAGE_CHOCOLATE = "ultimoEnvioChocolate";
 
-// ===============================
-// ELEMENTOS
-// ===============================
 const btnCarta = document.getElementById("btnEmail");
 const statusCarta = document.getElementById("status");
 
@@ -215,78 +212,107 @@ const btnChocolate = document.getElementById("btnChocolate");
 const statusChocolate = document.getElementById("statusChocolate");
 const selectChocolate = document.getElementById("selectChocolate");
 
-// ===============================
-// TEMPO DE BLOQUEIO
-// ===============================
-function getTempoBloqueio() {
-  return DIAS_BLOQUEIO > 0
-    ? DIAS_BLOQUEIO * 24 * 60 * 60 * 1000
-    : SEGUNDOS_BLOQUEIO * 1000;
+function getTempoBloqueioCarta() {
+  return DIAS_BLOQUEIO_CARTA > 0
+    ? DIAS_BLOQUEIO_CARTA * 24 * 60 * 60 * 1000
+    : SEGUNDOS_BLOQUEIO_CARTA * 1000;
 }
 
-// ===============================
-// VERIFICA BLOQUEIO POR ITEM
-// ===============================
-function verificarBloqueio(storageKey) {
+function getTempoBloqueioChocolate() {
+  return DIAS_BLOQUEIO_CHOCOLATE > 0
+    ? DIAS_BLOQUEIO_CHOCOLATE * 24 * 60 * 60 * 1000
+    : SEGUNDOS_BLOQUEIO_CHOCOLATE * 1000;
+}
+
+function verificarBloqueio(storageKey, getTempoFn) {
   const ultimo = localStorage.getItem(storageKey);
   if (!ultimo) return 0;
 
   const agora = Date.now();
-  const restante = getTempoBloqueio() - (agora - Number(ultimo));
+  const restante = getTempoFn() - (agora - Number(ultimo));
 
   return restante > 0 ? restante : 0;
 }
 
-// ===============================
-// ATUALIZA UM BOTÃO E UM STATUS
-// ===============================
-function atualizarBotao(botao, statusEl, storageKey, tituloEmoji) {
-  const restante = verificarBloqueio(storageKey);
+function atualizarCarta() {
+  const restante = verificarBloqueio(STORAGE_CARTA, getTempoBloqueioCarta);
 
   if (restante > 0) {
-    botao.disabled = true;
+    btnCarta.disabled = true;
 
-    if (DIAS_BLOQUEIO > 0) {
+    if (DIAS_BLOQUEIO_CARTA > 0) {
       const liberacao = new Date(Date.now() + restante);
 
-      statusEl.innerHTML = `
+      statusCarta.innerHTML = `
         <span id="datavalidacao">
-          ${tituloEmoji} Pedido já enviado.<br>
+          💌 Pedido já enviado.
           Disponível novamente em:
           ${liberacao.toLocaleDateString("pt-BR")}
         </span>
       `;
+
     } else {
       const segundos = Math.ceil(restante / 1000);
 
-      statusEl.innerHTML = `
+      statusCarta.innerHTML = `
         <span id="datavalidacao">
-          ${tituloEmoji} Pedido já enviado.<br>
+          💌 Pedido já enviado.
           Aguarde ${segundos} segundo${segundos > 1 ? "s" : ""}...
         </span>
       `;
     }
 
   } else {
-    botao.disabled = false;
-    statusEl.textContent = "";
+    btnCarta.disabled = false;
+    statusCarta.textContent = "";
   }
 }
 
-// ===============================
-// ATUALIZA TODOS
-// ===============================
+function atualizarChocolate() {
+  const restante = verificarBloqueio(
+    STORAGE_CHOCOLATE,
+    getTempoBloqueioChocolate
+  );
+
+  if (restante > 0) {
+    btnChocolate.disabled = true;
+
+    if (DIAS_BLOQUEIO_CHOCOLATE > 0) {
+      const liberacao = new Date(Date.now() + restante);
+
+      statusChocolate.innerHTML = `
+        <span id="datavalidacao">
+          🍫 Pedido já enviado.
+          Disponível novamente em:
+          ${liberacao.toLocaleDateString("pt-BR")}
+        </span>
+      `;
+
+    } else {
+      const segundos = Math.ceil(restante / 1000);
+
+      statusChocolate.innerHTML = `
+        <span id="datavalidacao">
+          🍫 Pedido já enviado.
+          Aguarde ${segundos} segundo${segundos > 1 ? "s" : ""}...
+        </span>
+      `;
+    }
+
+  } else {
+    btnChocolate.disabled = false;
+    statusChocolate.textContent = "";
+  }
+}
+
 function atualizarTudo() {
-  atualizarBotao(btnCarta, statusCarta, STORAGE_CARTA, "💌");
-  atualizarBotao(btnChocolate, statusChocolate, STORAGE_CHOCOLATE, "🍫");
+  atualizarCarta();
+  atualizarChocolate();
 }
 
 setInterval(atualizarTudo, 1000);
 atualizarTudo();
 
-// ===============================
-// EMAIL — CARTA
-// ===============================
 btnCarta.addEventListener("click", () => {
   const assunto = "Solicitando uma carta de amor 💖";
   const corpo = `
@@ -303,12 +329,9 @@ sua pretinha.
   )}&body=${encodeURIComponent(corpo)}`;
 
   localStorage.setItem(STORAGE_CARTA, Date.now());
-  atualizarTudo();
+  atualizarCarta();
 });
 
-// ===============================
-// EMAIL — CHOCOLATE
-// ===============================
 btnChocolate.addEventListener("click", () => {
   const chocolate = selectChocolate.value;
 
@@ -334,5 +357,5 @@ sua pretinha.
   )}&body=${encodeURIComponent(corpo)}`;
 
   localStorage.setItem(STORAGE_CHOCOLATE, Date.now());
-  atualizarTudo();
+  atualizarChocolate();
 });
